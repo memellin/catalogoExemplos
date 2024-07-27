@@ -1,0 +1,102 @@
+/* Estilos para o layout do catálogo */
+
+:root {
+    --primary-color: #0f3d4c;
+    --secondary-color: #f0f0f0;
+    --font-sans-serif: sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f3d4c;
+    width: auto;
+    height: 80px;
+    border-radius:  0 0 10px 10px;
+    margin-bottom: 25px;
+}
+
+.search-bar {
+    justify-content: center;
+    align-items: center;
+    background-color: #0f3d4c;
+}
+
+.search-style {
+    width: 700px;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: large;
+    font-family: var(--font-sans-serif);
+}
+
+.button-style {
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: large;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+}
+
+
+.body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #badde8;
+    margin: 25px;
+}
+
+
+.produto {
+    color: #000000;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-container div {
+    margin-top: 10px;
+    background-color: #2ba6b6;
+    width: 400px;
+    height: 420px;
+    border-radius: .5rem;
+}
+
+#user-container img {
+    width: 380px;
+    height: 280px;
+    margin: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#user-container h2 {
+    margin: 30px;
+    text-align: center;
+}
+#user-container h3 {
+    margin: -10px;
+    text-align: center;
+
+}
