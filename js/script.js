@@ -1,9 +1,8 @@
-
-// 1 - REQUEST COM AXIOS
 let data = []; // Declaração global da variável data
 
 let currentPage = 0;
 const pageSize = 72;
+let totalPages = 0; // Declaração de totalPages
 
 const getData = async (page = 0, query = '') => {
     try {
@@ -13,17 +12,37 @@ const getData = async (page = 0, query = '') => {
         }
         const response = await axios.get(url);
         console.log(response);
-        const data = response.data.content; // Guardando os dados globalmente
+        data = response.data.content; // Guardando os dados globalmente
         printData(data); // Chamada para imprimir dados iniciais
 
         // Atualizar totalPages e currentPage
         totalPages = response.data.totalPages;
         currentPage = response.data.number;
-        
+
+        // Atualizar a caixa de seleção de páginas
+        updatePageSelector(totalPages);
+
     } catch (error) {
         console.log(error);
     };
 };
+
+const updatePageSelector = (total) => {
+    const pageSelector = document.querySelector("#pageSelector");
+    pageSelector.innerHTML = ''; // Limpa as opções atuais
+    for (let i = 0; i < total; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.text = `${i + 1}`;
+        pageSelector.appendChild(option);
+    }
+    pageSelector.value = currentPage; // Define a página atual como selecionada
+}
+
+document.querySelector("#pageSelector").addEventListener("change", (e) => {
+    const selectedPage = e.target.value;
+    getData(selectedPage);
+});
 
 document.querySelector("#next").addEventListener("click", () => {
     if (currentPage < totalPages - 1) {
@@ -59,31 +78,14 @@ const printData = (dataToPrint) => {
         div.appendChild(nameElement);
 
         const ppg = document.createElement("h3");
-        ppg.textContent = user.ppg;
-        div.appendChild(ppg); // colocar para concatenar
-        // o R$ junto ao dado que vier do banco, o R$ fica no html
-
+        ppg.textContent = `R$ ${user.ppg}`; // Adiciona 'R$' antes do valor do produto
+        div.appendChild(ppg);
 
         container.appendChild(div);
     });
 }
 
 getData(); // Carrega os dados na inicialização
-
-// Form method POST
-
-// const form = document.querySelector("#post-form");
-// const titleInput = document.querySelector("#title");
-// const bodyInput = document.querySelector("#body");
-
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-
-//     axios.post("https://jsonplaceholder.typicode.com/posts", {
-//         title: titleInput.value,
-//         body: bodyInput.value,
-//     })
-// })
 
 // Script para barra de pesquisa
 
@@ -99,4 +101,59 @@ searchInput.addEventListener("keyup", (e) => {
     getData(0, search); // Chama getData com a query de busca
     console.log('Usuários filtrados:', filteredUsers);
     printData(filteredUsers); // Chama printData com os dados filtrados
+});
+
+// Adicionar produto
+const addProductForm = document.querySelector("#addProductForm");
+
+addProductForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.querySelector("#addProductName").value;
+    const ppg = document.querySelector("#addProductPpg").value;
+    const position = document.querySelector("#addProductPosition").value;
+    const status = document.querySelector("#addProductStatus").value;
+
+    try {
+        const response = await axios.post("http://localhost:8080/api/examples", { name, ppg, position, status });
+        console.log(response.data);
+        getData(currentPage); // Atualiza a lista de produtos
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+// Editar produto
+const editProductForm = document.querySelector("#editProductForm");
+
+editProductForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = document.querySelector("#editProductId").value;
+    const name = document.querySelector("#editProductName").value;
+    const ppg = document.querySelector("#editProductPpg").value;
+    const position = document.querySelector("#editProductPosition").value;
+    const status = document.querySelector("#editProductStatus").value;
+
+    try {
+        const response = await axios.put(`http://localhost:8080/api/examples/${id}`, { name, ppg, position, status });
+        console.log(response.data);
+        getData(currentPage); // Atualiza a lista de produtos
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+// Excluir produto
+const deleteProductForm = document.querySelector("#deleteProductForm");
+
+deleteProductForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = document.querySelector("#deleteProductId").value;
+
+    try {
+        await axios.delete(`http://localhost:8080/api/examples/${id}`);
+        console.log(`Produto com ID ${id} excluído.`);
+        getData(currentPage); // Atualiza a lista de produtos
+    } catch (error) {
+        console.error(error);
+    }
 });

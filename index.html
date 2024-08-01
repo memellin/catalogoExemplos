@@ -8,22 +8,26 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="js/script.js" defer></script>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="cadastro-produto.html">
+  <!-- comando para por logo no html-->
+  <link rel="shortcut icon" href="img/fardim.png" type="image/x-icon">
 </head>
 
 <body class="body">
+
   <header class="header">
     <nav class="navbar-container">
       <div class="search-bar"></div>
       <input type="text" id="searchInput" placeholder="Procurar produtos..." class="search-style" />
-      <div class="navbar">
-        <!-- <label for="home" class="nav-item">Home</label>
+      <!-- <div class="navbar">
+         <label for="home" class="nav-item">Home</label>
         <label for="produtos" class="nav-item">Produtos</label>
         <label for="contato" class="nav-item">Contato</label>
         <label for="sobre" class="nav-item">Sobre</label>
         <label for="login" class="nav-item">Login</label>
         <label for="carrinho" class="nav-item">Carrinho -->
-        </label>
-      </div>
+      <!-- </label> -->
+      <!-- </div>  -->
     </nav>
   </header>
   <main>
@@ -43,8 +47,39 @@
     <div id="user-container" class="produto">
 
     </div>
-    <button id="previous">Página Anterior</button>
-    <button id="next">Próxima Página</button>
+
+    <div class="mudancaPagina">
+      <select id="pageSelector"></select>
+      <button id="previous">Página Anterior</button>
+      <button id="next">Próxima Página</button>
+    </div>
+    <!-- Formulário para adicionar produto -->
+    <h2>Adicionar Produto</h2>
+    <form id="addProductForm">
+      <input type="text" id="addProductName" placeholder="Nome do produto" required />
+      <input type="number" id="addProductPpg" placeholder="Preço do produto" required />
+      <input type="text" id="addProductPosition" placeholder="URL da imagem" required />
+      <input type="text" id="addProductStatus" placeholder="Status do produto" value="ativo" readonly />
+      <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <!-- Formulário para editar produto -->
+    <h2>Editar Produto</h2>
+    <form id="editProductForm">
+      <input type="number" id="editProductId" placeholder="ID do produto" required />
+      <input type="text" id="editProductName" placeholder="Nome do produto" required />
+      <input type="number" id="editProductPpg" placeholder="Preço do produto" required />
+      <input type="text" id="editProductPosition" placeholder="URL da imagem" required />
+      <input type="text" id="editProductStatus" placeholder="Status do produto" value="ativo" readonly />
+      <button type="submit">Editar Produto</button>
+    </form>
+
+    <!-- Formulário para excluir produto -->
+    <h2>Excluir Produto</h2>
+    <form id="deleteProductForm">
+      <input type="number" id="deleteProductId" placeholder="ID do produto" required />
+      <button type="submit">Excluir Produto</button>
+    </form>
 
   </main>
 </body>
