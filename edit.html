@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <script src="js/editProduct.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="body">
+    <h1>Editar Produto</h1>
+    <form class="cadastro-form" id="edit-form">
+        <label for="name">Nome do Produto:</label>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="position">Imagem do Produto (URL):</label>
+        <input type="text" id="position" name="position"><br>
+
+        <label for="ppg">Preço do Produto:</label>
+        <input type="text" id="ppg" name="ppg"><br>
+
+        <div class="cadastro-form-card">
+            <label for="categoria" class="form-text">Categoria do Produto:</label>
+                <select id="status" name="status" required>
+                    <option value="tinta">tinta</option>
+                    <option value="ferramenta">ferramenta</option>
+                    <option value="pincel">pincel</option>
+                    <option value="flanela">flanela</option>
+                    <option value="outros">outros</option>
+                </select>
+        </div>
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+</body>
+
+</html>

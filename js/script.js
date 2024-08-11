@@ -81,6 +81,30 @@ const printData = (dataToPrint) => {
         ppg.textContent = `R$ ${user.ppg}`; // Adiciona 'R$' antes do valor do produto
         div.appendChild(ppg);
 
+        const editButton = document.createElement("button");
+        editButton.textContent = "Editar";
+        editButton.addEventListener("click", () => {
+            window.location.href = `edit.html?id=${user._id}`;
+        });
+        
+        div.appendChild(editButton);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Excluir";
+        deleteButton.addEventListener("click", async () => {
+            try {
+                const response = await axios.delete(`http://localhost:8080/api/examples/${user._id}`);
+                console.log(response);
+                getData(currentPage); // Recarrega os dados da página atual após a exclusão
+                alert("Produto excluído com sucesso!");
+            } catch (error) {
+                console.log(error);
+                alert("Ocorreu um erro ao excluir o produto. Por favor, tente novamente.");
+            }
+        });
+        div.appendChild(deleteButton);
+
+
         container.appendChild(div);
     });
 }
@@ -101,59 +125,4 @@ searchInput.addEventListener("keyup", (e) => {
     getData(0, search); // Chama getData com a query de busca
     console.log('Usuários filtrados:', filteredUsers);
     printData(filteredUsers); // Chama printData com os dados filtrados
-});
-
-// Adicionar produto
-const addProductForm = document.querySelector("#addProductForm");
-
-addProductForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.querySelector("#addProductName").value;
-    const ppg = document.querySelector("#addProductPpg").value;
-    const position = document.querySelector("#addProductPosition").value;
-    const status = document.querySelector("#addProductStatus").value;
-
-    try {
-        const response = await axios.post("http://localhost:8080/api/examples", { name, ppg, position, status });
-        console.log(response.data);
-        getData(currentPage); // Atualiza a lista de produtos
-    } catch (error) {
-        console.error(error);
-    }
-});
-
-// Editar produto
-const editProductForm = document.querySelector("#editProductForm");
-
-editProductForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const id = document.querySelector("#editProductId").value;
-    const name = document.querySelector("#editProductName").value;
-    const ppg = document.querySelector("#editProductPpg").value;
-    const position = document.querySelector("#editProductPosition").value;
-    const status = document.querySelector("#editProductStatus").value;
-
-    try {
-        const response = await axios.put(`http://localhost:8080/api/examples/${id}`, { name, ppg, position, status });
-        console.log(response.data);
-        getData(currentPage); // Atualiza a lista de produtos
-    } catch (error) {
-        console.error(error);
-    }
-});
-
-// Excluir produto
-const deleteProductForm = document.querySelector("#deleteProductForm");
-
-deleteProductForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const id = document.querySelector("#deleteProductId").value;
-
-    try {
-        await axios.delete(`http://localhost:8080/api/examples/${id}`);
-        console.log(`Produto com ID ${id} excluído.`);
-        getData(currentPage); // Atualiza a lista de produtos
-    } catch (error) {
-        console.error(error);
-    }
 });

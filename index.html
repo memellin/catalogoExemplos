@@ -17,6 +17,9 @@
 
   <header class="header">
     <nav class="navbar-container">
+      <div class="navbar-container-cadastro">
+      <a href="cadastro-produto.html" class="navbar-items">Adicionar Produto</a>
+      </div>
       <div class="search-bar"></div>
       <input type="text" id="searchInput" placeholder="Procurar produtos..." class="search-style" />
       <!-- <div class="navbar">
@@ -45,7 +48,6 @@
     </form> -->
 
     <div id="user-container" class="produto">
-
     </div>
 
     <div class="mudancaPagina">
@@ -53,33 +55,7 @@
       <button id="previous">Página Anterior</button>
       <button id="next">Próxima Página</button>
     </div>
-    <!-- Formulário para adicionar produto -->
-    <h2>Adicionar Produto</h2>
-    <form id="addProductForm">
-      <input type="text" id="addProductName" placeholder="Nome do produto" required />
-      <input type="number" id="addProductPpg" placeholder="Preço do produto" required />
-      <input type="text" id="addProductPosition" placeholder="URL da imagem" required />
-      <input type="text" id="addProductStatus" placeholder="Status do produto" value="ativo" readonly />
-      <button type="submit">Adicionar Produto</button>
-    </form>
 
-    <!-- Formulário para editar produto -->
-    <h2>Editar Produto</h2>
-    <form id="editProductForm">
-      <input type="number" id="editProductId" placeholder="ID do produto" required />
-      <input type="text" id="editProductName" placeholder="Nome do produto" required />
-      <input type="number" id="editProductPpg" placeholder="Preço do produto" required />
-      <input type="text" id="editProductPosition" placeholder="URL da imagem" required />
-      <input type="text" id="editProductStatus" placeholder="Status do produto" value="ativo" readonly />
-      <button type="submit">Editar Produto</button>
-    </form>
-
-    <!-- Formulário para excluir produto -->
-    <h2>Excluir Produto</h2>
-    <form id="deleteProductForm">
-      <input type="number" id="deleteProductId" placeholder="ID do produto" required />
-      <button type="submit">Excluir Produto</button>
-    </form>
 
   </main>
 </body>

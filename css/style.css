@@ -10,6 +10,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style-type: none;
+    list-style: none;
+    text-decoration: none;
+
 }
 
 
@@ -26,8 +30,12 @@
 }
 
 
-
-
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.62rem;
+}
 
 .navbar-container {
     display: flex;
@@ -48,10 +56,25 @@
     border-radius: 6px 0 0 6px;
 }
 
+
+.navbar-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #78b30a;
+    width: auto;
+    height: 40px;
+    width: 150px;
+    border-radius: 6px 6px 10px 10px;
+}
+
+
+
 .search-bar {
     justify-content: center;
     align-items: center;
     background-color: #0f3d4c;
+    display: block;
 }
 
 .search-style {
@@ -115,7 +138,27 @@
 
 }
 
-.mudancaPagina{
+#user-container button {
+    justify-content: center;
+    margin-top: 5px;
+    height: 20px;
+    width: 70px;
+    border-radius: 5px;
+    background-color: #0f3d4c;
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: medium;
+    font-family: sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+#user-container button:hover {
+    background-color: #218014;
+    color: #f0f0f0;
+    cursor: pointer;
+}
+
+.mudancaPagina {
     display: flex;
     justify-content: center;
     margin-top: 10px;
@@ -143,4 +186,64 @@
     font-size: large;
     font-family: var(--font-sans-serif);
     background-color: #f0f0f0;
+}
+
+.cadastro-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    grid-row: 2;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cadastro-form-style {
+    width: 400px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: large;
+    font-family: var(--font-sans-serif);
+}
+
+.form-text {
+    font-size: large;
+}
+
+.cadastro-form-card {
+    width: 410px;
+    height: 90px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: large;
+    font-family: var(--font-sans-serif);
+}
+
+.cadastro-form-card-button {
+    margin-left: 150px;
+}
+
+.cadastro-form-card-button button {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: large;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+}
+
+.cadastro-form-card-button button:hover {
+    background-color: #0f3d4c;
+    color: #f0f0f0;
+}
+
+.cadastro-form-style-select {
+    width: 400px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: large;
+    font-family: var(--font-sans-serif);
 }
